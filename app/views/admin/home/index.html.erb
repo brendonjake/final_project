@@ -1,0 +1,7 @@
+
+<h1>Admin Home</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+<% if admin_user_signed_in? %>
+  <h2> Hello <%= current_admin_user.email %> </h2>
+<% end %>

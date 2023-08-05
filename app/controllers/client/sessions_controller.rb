@@ -7,7 +7,15 @@ class Client::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
-
+  def create
+    user = User.find_by(email: params[:client_user][:email])
+    if user&.client?
+      super
+    else
+      flash[:alert] = "Wrong email or password"
+      redirect_to new_client_user_session_path
+    end
+  end
   # POST /resource/sign_in
   # def create
   #   super
@@ -25,7 +33,7 @@ class Client::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   def after_sign_in_path_for(resource)
-    client_root
+    client_root_path
 
   end
 end
