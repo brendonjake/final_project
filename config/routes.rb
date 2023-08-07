@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'client/sessions', registrations: 'client/registrations'
     }, as: 'client'
-    # namespace :client do
-    # end
+    namespace :client, path: '' do
+      resource :profiles, only: [:show,  :edit, :update]
+    end
   end
 
   constraints(AdminDomainConstraint.new) do

@@ -12,4 +12,6 @@ class User < ApplicationRecord
     types: %i[voip mobile],
     countries: [:ph]
   }
+  has_one :profile
+
 end
