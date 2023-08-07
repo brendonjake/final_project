@@ -1,6 +1,54 @@
+
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active d-flex justify-content-center">
+      <img src="<%= asset_path 'download bg.jpeg' %>" class="align-middle w-75" alt="..." style="height: 300px">
+    </div>
+    <div class="carousel-item d-flex justify-content-center">
+      <img src="<%= asset_path 'download bg.jpeg' %>" class="align-middle w-75" alt="..." style="height: 300px">
+    </div>
+    <div class="carousel-item d-flex justify-content-center">
+      <img src="<%= asset_path 'download bg.jpeg' %>" class="align-middle w-75" alt="..." style="height: 300px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 <h1>Client Home</h1>
 <p>Find me in app/views/home/index.html.erb</p>
 
+<div class="container marketing">
+
+  <div class="row">
+    <div class="col-lg-4 mb-5">
+      <svg class="bd-placeholder-img rounded-circle" width="220" height="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="220" height="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="220" height="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="220" height="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="220" height="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="220" height="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    </div>
+  </div>
+
+
+
+</div>
 <% if client_user_signed_in? %>
   <h2> Hello <%= current_client_user.email %> </h2>
   <%= link_to 'Sign out', destroy_client_user_session_path, data: { 'turbo-method': :delete } %>
