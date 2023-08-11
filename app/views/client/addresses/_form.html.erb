@@ -3,7 +3,7 @@
     <%= form.select(:genre, Address.genres.map(&:first), {}, class: 'form-control') %>
     <%= form.label :genre %>
   </div>
-  
+
   <div class="form-floating mb-4">
     <%= form.text_area :street_address, autofocus: true, autocomplete: "street_address", class: "form-control" %>
     <%= form.label :street_address %>
