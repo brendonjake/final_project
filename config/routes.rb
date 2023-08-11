@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     }, as: 'client'
     namespace :client, path: '' do
       resource :profiles, only: [:show, :edit, :update]
-       resources :addresses
-        resources :invite_peoples
+      resources :addresses
+      resources :invite_peoples
     end
   end
 
@@ -18,8 +18,11 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'admin/sessions'
     }, as: 'admin'
-    # namespace :admin do
-    # end
+    namespace :admin, path: '' do
+      resources :users, only: [:index]
+      # namespace :admin do
+      # end
+    end
   end
 
   namespace :api do

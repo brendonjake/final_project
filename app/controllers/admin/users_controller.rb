@@ -1,10 +1,8 @@
 class Admin::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :check_admin
+  before_action :authenticate_admin_user!
 
-  def index; end
+  def index
+    @users = User.admin
+  end
 
-  def check_admin
-    raise ActionController::RoutingError.new('Not Found') unless current_user.admin?
-    end
 end
