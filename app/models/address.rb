@@ -18,4 +18,12 @@ class Address < ApplicationRecord
   belongs_to :region, class_name: 'Address::Region', foreign_key: 'address_region_id'
   enum genre: { home: 0, office: 1 }
 
+  # before_create :count_user_addresses
+  #
+  # private
+  #
+  # def count_user_addresses
+  #   return if user.addresses.count < 5
+  #   self.errors.add(:base, 'User can only have 5 addresses')
+  # end
 end
