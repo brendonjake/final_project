@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   enum role: { client: 0, admin: 1 }
 
+  belongs_to :parent, class_name: 'User', optional: true
+  has_many :children, class_name: 'User', foreign_key: 'parent_id'
+
   validates :phone, phone: {
     possible: true,
     allow_blank: true,

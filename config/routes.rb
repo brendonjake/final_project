@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     }, as: 'client'
     namespace :client, path: '' do
       resource :profiles, only: [:show, :edit, :update]
-      resources :addresses
+       resources :addresses
+        resources :invite_peoples
     end
   end
 

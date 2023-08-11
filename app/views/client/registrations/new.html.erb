@@ -7,8 +7,8 @@
     <%= render "devise/shared/error_messages", resource: resource %>
     <h1 class="h3 mb-3 fw-normal">Register</h1>
     <div class="form-floating mb-4">
-      <%= text_field_tag :promoter_name, nil, autofocus: true, autocomplete: "email", class:"form-control" %>
-      <%= label_tag :promoter_name %>
+      <%= text_field_tag :promoter, cookies[:promoter], autofocus: true, autocomplete: "email", class:"form-control" %>
+      <%= label_tag :promoter %>
     </div>
 
     <div class="form-floating mb-4">
