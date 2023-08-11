@@ -1,0 +1,9 @@
+<% if @address.errors.any? %>
+  <ul>
+    <% @address.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render partial: 'form', locals: { method: :patch, address: @address, path: client_address_path  } %>

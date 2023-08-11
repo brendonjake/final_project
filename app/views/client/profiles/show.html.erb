@@ -1,4 +1,4 @@
-<div class="container my-5 border mb-5">
+<div class="container my-5 border mb-5 w-150 ms-auto">
   <div class="p-5 text-center bg-body-tertiary rounded-3 mb-3">
     <h1 class="text-body-emphasis mb-5">User Profile</h1>
     <ul class="list-unstyled mb-1-9">
@@ -8,18 +8,13 @@
         ''
       <% end %>
       <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Username:</span></li>
-      <%#= current_client_user.email %>
       <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span></li>
       <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Coins:</span></li>
     </ul>
-    <a class="btn btn-primary mb-3 rounded-pill" href="#" role="button" style="width: 400px">Cash In Now</a><br/>
+    <a class="btn btn-primary mb-3 rounded-pill" href="#" role="button" style="width: 300px">Cash In Now</a><br/>
     <div class="d-inline-flex gap-2 mb-5">
      <%= link_to 'Edit Profile', edit_client_profiles_path, class: "d-inline-flex align-items-center btn btn-secondary btn-lg px-4 rounded-pill" %>
-        <svg class="bi ms-2" width="24" height="24"><use xlink:href="#arrow-right-short"></use></svg>
-      </button>
-      <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
-        Addresses
-      </button>
+      <%= link_to 'Addresses', new_client_address_path, class: "d-inline-flex align-items-center btn btn-secondary btn-lg px-4 rounded-pill" %>
     </div>
   </div>
  </div>

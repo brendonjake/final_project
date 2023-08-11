@@ -1,3 +1,13 @@
 <h1>Location</h1>
 
-<%= render partial: 'form', locals: { method: :post, address: @address } %>
+<% if @address.errors.any? %>
+  <ul>
+    <% @address.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render partial: 'form', locals: { method: :post, address: @address, path:  client_addresses_path } %>
+
+<%= link_to 'Index', client_addresses_path %>

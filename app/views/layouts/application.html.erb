@@ -117,7 +117,7 @@
           <a class="nav-link active" aria-current="page" href="#">Shop</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Me</a>
+          <%= link_to 'Me', client_profiles_path, class: "nav-link" %>
         </li>
       </ul>
       </li>
@@ -125,7 +125,8 @@
     </div>
   </div>
 </nav>
-
-<%= yield %>
+<div class="m-auto p-5 m-5 w-100">
+  <%= yield %>
+</div>
 </body>
 </html>
