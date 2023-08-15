@@ -1,6 +1,6 @@
 class Client::AddressesController < ApplicationController
   before_action :authenticate_client_user!
-  before_action :set_post, only: [ :edit, :update, :destroy]
+  before_action :set_address, only: [ :edit, :update, :destroy]
 
   def index
     @addresses = current_client_user.addresses
@@ -17,9 +17,9 @@ class Client::AddressesController < ApplicationController
       flash.now[:alert] = 'Post create failed'
       render :new, status: :unprocessable_entity
     else
-      if @address.save
+      if @item.save
         flash[:notice] = 'Post created successfully'
-        redirect_to client_addresses_path
+        redirect_to admin_addresses_path
       else
         flash.now[:alert] = 'Post create failed'
         render :new, status: :unprocessable_entity
@@ -47,7 +47,7 @@ class Client::AddressesController < ApplicationController
 
   private
 
-  def set_post
+  def set_address
     @address = current_client_user.addresses.find(params[:id])
   end
 
