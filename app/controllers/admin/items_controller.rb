@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin_user!
   before_action :set_item, only: [ :edit, :update, :destroy]
   def index
-    @items = Item.all
+    @items = Item.includes(:categories).all
   end
 
   def new
@@ -43,7 +43,7 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:image, :name, :quantity, :minimum_bets, :state, :batch_count, :online_at, :offline_at, :start_at, :status)
+    params.require(:item).permit(:image, :name, :quantity, :minimum_bets, :state, :batch_count, :online_at, :offline_at, :start_at, :status, category_ids: [])
   end
 
   def set_item

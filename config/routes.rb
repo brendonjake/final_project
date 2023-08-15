@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     namespace :admin, path: '' do
       resources :users, only: [:index]
       resources :items
+      resources :categories
       # namespace :admin do
       # end
     end

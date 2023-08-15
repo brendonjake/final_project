@@ -17,5 +17,5 @@ class Address < ApplicationRecord
   belongs_to :barangay, class_name: 'Address::Barangay', foreign_key: 'address_barangay_id'
   belongs_to :region, class_name: 'Address::Region', foreign_key: 'address_region_id'
   enum genre: { home: 0, office: 1 }
-  
+
 end
