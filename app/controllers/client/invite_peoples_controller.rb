@@ -1,7 +1,6 @@
 class Client::InvitePeoplesController < ApplicationController
 
   def index
-    require "rqrcode"
     @promoter_link = "client.com:3000/users/sign_up?promoter=#{current_client_user.email}"
     qrcode = RQRCode::QRCode.new(@promoter_link)
 
