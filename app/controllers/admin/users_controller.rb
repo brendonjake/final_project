@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin_user!
 
   def index
-    @users = User.admin
+    @users = current_client_user
   end
 
 end
