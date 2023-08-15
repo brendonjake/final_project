@@ -1,0 +1,52 @@
+<%= form_with model: item, url: path, data: { controller: :location, turbo: false } do |form| %>
+
+  <div class="form-floating mb-4">
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <%= form.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+    <%= form.label :name %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <%= form.number_field :quantity, autofocus: true, autocomplete: "quantity", class: "form-control" %>
+    <%= form.label :quantity %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <%= form.number_field :minimum_bets, autofocus: true, autocomplete: "minimum_bets", class: "form-control" %>
+    <%= form.label :minimum_bets %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <%= form.number_field :batch_count, autofocus: true, autocomplete: "batch_count", class: "form-control" %>
+    <%= form.label :batch_count %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <%= form.date_field :online_at, autofocus: true, autocomplete: "online_at", class: "form-control" %>
+    <%= form.label :online_at %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <%= form.date_field :offline_at, autofocus: true, autocomplete: "offline_at", class: "form-control" %>
+    <%= form.label :offline_at %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <%= form.time_field :start_at, autofocus: true, autocomplete: "start_at", class: "form-control" %>
+    <%= form.label :start_at %>
+  </div>
+
+  <div class="form-floating mb-4">
+    <% Item.statuses.each do |status, value| %>
+      <%= form.radio_button :status, status, checked: item.status == status %>
+      <%= form.label status.humanize %>
+    <% end %>
+  </div>
+
+  <div class="mb-3 row">
+    <%= form.submit %>
+  </div>
+<% end %>

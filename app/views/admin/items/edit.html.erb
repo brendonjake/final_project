@@ -1,0 +1,9 @@
+<% if @item.errors.any? %>
+  <ul>
+    <% @item.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render partial: 'form', locals: { method: :patch, item: @item, path: admin_item_path(@item)  } %>

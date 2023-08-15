@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     }, as: 'admin'
     namespace :admin, path: '' do
       resources :users, only: [:index]
+      resources :items
       # namespace :admin do
       # end
     end
