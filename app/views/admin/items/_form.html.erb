@@ -39,11 +39,16 @@
     <%= form.label :start_at %>
   </div>
 
-  <div class="form-floating mb-4">
+  <div>
     <% Item.statuses.each do |status, value| %>
       <%= form.radio_button :status, status, checked: item.status == status %>
       <%= form.label status.humanize %>
     <% end %>
+
+    <div class="form-check-label">
+      <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    </div>
+
   </div>
 
   <div class="mb-3 row">
