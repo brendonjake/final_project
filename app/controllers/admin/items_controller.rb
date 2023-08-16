@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin_user!
-  before_action :set_item, only: [ :edit, :update, :destroy]
+  before_action :set_item, only: [ :edit, :update, :destroy, :start, :pause, :end, :cancel]
   def index
     @items = Item.includes(:categories).all
   end
@@ -12,10 +12,10 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] = 'Post created successfully'
+      flash[:notice] = 'Item created successfully'
       redirect_to admin_items_path
     else
-      flash.now[:alert] = 'Post create failed'
+      flash.now[:alert] = 'Item create failed'
       render :new, status: :unprocessable_entity
     end
     # render json: params
@@ -26,17 +26,49 @@ class Admin::ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      flash[:notice] = 'Post updated successfully'
+      flash[:notice] = 'Item updated successfully'
       redirect_to admin_items_path
     else
-      flash.now[:alert] = 'Post update failed'
+      flash.now[:alert] = 'Item update failed'
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @item.destroy
-    flash[:notice] = 'Post destroyed successfully'
+    flash[:notice] = 'Item destroyed successfully'
+    redirect_to admin_items_path
+  end
+
+  def start
+    if @item.may_start?
+      flash[:notice] = 'Start successfully'
+      @item.start!
+    end
+    redirect_to admin_items_path
+  end
+
+  def pause
+    if @item.may_pause?
+      flash[:notice] = 'Paused successfully'
+      @item.pause!
+    end
+    redirect_to admin_items_path
+  end
+
+  def end
+    if @item.may_end?
+      flash[:notice] = 'Ended successfully'
+      @item.end!
+    end
+    redirect_to admin_items_path
+  end
+
+  def cancel
+    if @item.may_cancel?
+      flash[:notice] = 'Cancelled successfully'
+      @item.cancel!
+    end
     redirect_to admin_items_path
   end
 
@@ -47,7 +79,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:id] || params[:item_id])
   end
 end
 
