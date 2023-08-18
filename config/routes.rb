@@ -27,8 +27,11 @@ Rails.application.routes.draw do
         put :end
         put :cancel
       end
-
       resources :categories
+      resources :bets do
+        put :cancel
+      end
+
       # namespace :admin do
       # end
     end

@@ -34,12 +34,19 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:starting, :paused], to: :cancelled
+      transitions from: [:starting, :paused], to: :cancelled, after: :cancel_bet
+
     end
   end
 
   def deduct_quantity
     update(quantity: (quantity) - 1, batch_count: (batch_count) + 1)
+  end
+
+  def cancel_bet
+    bets.each do |bet|
+      bet.cancel!
+    end
   end
 
   def quantity_enough?
@@ -49,5 +56,4 @@ class Item < ApplicationRecord
   def date_today?
     Date.current < offline_at
   end
-
 end
