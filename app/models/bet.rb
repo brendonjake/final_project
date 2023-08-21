@@ -7,9 +7,12 @@ class Bet < ApplicationRecord
   scope :filter_by_start_date, -> (start_date) { where("offline_at >= (?)", start_date)}
   scope :filter_by_end_date, -> (end_date) { where("offline_at < (?)", end_date) }
 
+  has_many :winners
   belongs_to :item
   belongs_to :user
-  after_create :deduct_user_coins
+  before_validation :deduct_user_coins
+  after_create :assign_serial_number
+
   aasm column: :state do
     state :betting, initial: true
     state :won, :lost, :cancelled
@@ -31,7 +34,14 @@ class Bet < ApplicationRecord
     user.update(coins: user.coins + 1)
   end
 
+  def assign_serial_number
+    bet_count = Bet.where(batch_count: item.batch_count, item: item).count.to_s
+    date = Time.current.strftime('%y%m%d')
+    self.update(serial_number: "#{date}-#{item.id}-#{item.batch_count}-#{bet_count.rjust(4, '0')}")
+  end
+
   def deduct_user_coins
-      user.update(coins: user.coins - 1)
+    return user.update(coins: user.coins - 1) if user.coins >= 1
+    self.errors.add(:base, "Insufficient Coins")
   end
 end
