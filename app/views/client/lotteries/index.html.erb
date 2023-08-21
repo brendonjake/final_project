@@ -24,25 +24,27 @@
   Announcement:
 </div>
 <div class="container w-100">
-  <button type="button" class="btn btn-secondary justify-content-center w-100">Secondary</button>
-  </div>
+  <button type="button" class="btn btn-secondary justify-content-center w-100">Button</button>
 </div>
 
 <div class="container marketing ">
-<%= link_to 'All', client_lotteries_path, class: 'btn btn-secondary' %>
-<% Category.all.each do |category| %>
-  <%= link_to category.name, client_lotteries_path(category: category), class: 'btn btn-secondary'%>
-<% end %>
+  <%= link_to 'All', client_lotteries_path, class: 'btn btn-secondary' %>
+  <% Category.all.each do |category| %>
+    <%= link_to category.name, client_lotteries_path(category: category), class: 'btn btn-secondary' %>
+  <% end %>
   <div class="row">
     <% @items.each do |item| %>
-    <div class="col-3 mb-5">
-      <div class="card" style="width: 18rem;">
-        <%=image_tag item.image.url, width: "100px", height: "100px", class:"card-img-top" if item.image.present?%>
-        <div class="card-body">
-          <%= item.name %>
+      <%= link_to client_lottery_path(item) do %>
+      <div class="col-3 mb-5">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag item.image.url, width: "100px", height: "100px", class: "card-img-top" if item.image.present? %>
+          <div class="card-body">
+            <%= item.name %>
+          </div>
         </div>
       </div>
-    </div>
       <% end %>
+    <% end %>
   </div>
 </div>
+
