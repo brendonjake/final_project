@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resource :profiles, only: [:show, :edit, :update]
       resources :addresses
       resources :invite_peoples
-      resources :lotteries
+      resources :lotteries, only: [:index, :show, :create]
     end
   end
 
@@ -30,6 +30,14 @@ Rails.application.routes.draw do
       resources :categories
       resources :bets do
         put :cancel
+      end
+      resources :winners do
+        put :submit
+        put :pay
+        put :ship
+        put :deliver
+        put :publish
+        put :remove_publish
       end
 
       # namespace :admin do

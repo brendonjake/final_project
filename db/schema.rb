@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_17_153319) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_19_104847) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -70,11 +70,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_153319) do
     t.bigint "item_id"
     t.bigint "user_id"
     t.integer "batch_count"
-    t.integer "coins", default: 0
     t.string "state"
     t.string "serial_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "coins", default: 1
   end
 
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
@@ -125,6 +125,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_153319) do
     t.integer "coins", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "winners", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "bet_id"
+    t.bigint "user_id"
+    t.bigint "address_id"
+    t.integer "item_batch_count"
+    t.string "state"
+    t.integer "price"
+    t.string "paid_at"
+    t.bigint "admin_id"
+    t.string "picture"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

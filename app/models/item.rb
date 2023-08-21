@@ -4,9 +4,12 @@ class Item < ApplicationRecord
 
   has_many :item_category_ships
   has_many :categories, through: :item_category_ships
+  has_many :winners
+  has_many :bets
 
   validates :name, presence: true
   validates :quantity, presence: true
+
 
   enum status: { active: 0, inactive: 1 }
 
@@ -30,7 +33,7 @@ class Item < ApplicationRecord
     end
 
     event :end do
-      transitions from: :starting, to: :ended
+      transitions from: :starting, to: :ended, guard: :enough_amount?
     end
 
     event :cancel do
@@ -56,4 +59,9 @@ class Item < ApplicationRecord
   def date_today?
     Date.current < offline_at
   end
+
+  def enough_amount?
+    item_batch >= minimum_bets
+  end
+
 end
