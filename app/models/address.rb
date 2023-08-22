@@ -11,6 +11,7 @@ class Address < ApplicationRecord
   validates :address_city_id, presence: true
   validates :address_barangay_id, presence: true
 
+  has_many :winners
   belongs_to :user
   belongs_to :province, class_name: 'Address::Province', foreign_key: 'address_province_id'
   belongs_to :city, class_name: 'Address::City', foreign_key: 'address_city_id'
