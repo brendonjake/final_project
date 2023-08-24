@@ -8,7 +8,7 @@ class Client::LotteriesController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @bet = Bet.new
-    @bets = current_user.bets.where(item: @item, batch_count: @item.batch_count)
+    @bets = current_client_user.bets.where(item: @item, batch_count: @item.batch_count)
     @progress = (Bet.where(item: @item, batch_count: @item.batch_count).count/@item.minimum_bets.to_f) * 100
   end
 

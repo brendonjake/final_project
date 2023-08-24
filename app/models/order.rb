@@ -26,9 +26,9 @@ class Order < ApplicationRecord
   end
 
   def assign_serial_number
-    bet_count = Bet.where(batch_count: item.batch_count, item: item).count.to_s
+    number_count = user.orders.count.to_s
     date = Time.current.strftime('%y%m%d')
-    self.update(serial_number: "#{date}-#{item.id}-#{item.batch_count}-#{bet_count.rjust(4, '0')}")
+    self.update(serial_number: "#{date}-#{id}-#{user.id}-#{number_count.rjust(4, '0')}")
   end
 
   def can_deduct_after_cancel?
