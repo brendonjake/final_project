@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :addresses
       resources :invite_peoples
       resources :lotteries, only: [:index, :show, :create]
+      resources :shops
     end
   end
 

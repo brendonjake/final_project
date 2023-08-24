@@ -1,0 +1,19 @@
+<div class="container border text-center align-self-center w-auto ms-5">
+  <div class="text-center">
+    <div class="card" style="width: 18rem;">
+      <%= image_tag @offer.image.url, width: "100px", height: "100px", class: "card-img-top" if @offer.image.present? %>
+      <div class="card-body">
+        <%= @offer.name %>
+      </div>
+    </div>
+  </div>
+
+  <tr>
+    <td> <%= @offer.genre %> </td>
+    <td> <%= @offer.amount %> </td>
+    <td> <%= @offer.coin %> </td>
+  </tr>
+
+  <%= button_to 'Purchase', client_shops_path(offer_id: @offer.id), class: "d-inline-flex align-items-center btn btn-secondary btn-lg px-4 rounded-pill" %>
+
+</div>

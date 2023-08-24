@@ -1,1 +1,28 @@
-<div class="container border text-center align-self-center w-auto ms-5">  <div class="text-center">    <div class="card" style="width: 18rem;">      <%= image_tag @item.image.url, width: "100px", height: "100px", class: "card-img-top" if @item.image.present? %>      <div class="card-body">        <%= @item.name %>      </div>    </div>  </div>  <table>    <div class="progress">      <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100"></div>    </div>    <%= form_with model: @bet, url: client_lotteries_path, data: { turbo: false } do |form| %>      <%= form.number_field :bet_count %>      <%= hidden_field_tag :item_batch_count, value = @item.batch_count %>      <%= hidden_field_tag :item_id, value = @item.id %>      <%= form.submit %> <br/>    <% end %>    <% @item.bets.each do |bet| %>      <tr>        <td> <%= bet.serial_number %> </td>      </tr>    <% end %>  </table></div>
+<div class="container border text-center align-self-center w-auto ms-5">
+  <div class="text-center">
+    <div class="card" style="width: 18rem;">
+      <%= image_tag @item.image.url, width: "100px", height: "100px", class: "card-img-top" if @item.image.present? %>
+      <div class="card-body">
+        <%= @item.name %>
+      </div>
+    </div>
+  </div>
+  <table>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <%= form_with model: @bet, url: client_lotteries_path, data: { turbo: false } do |form| %>
+      <%= form.number_field :bet_count %>
+      <%= hidden_field_tag :item_batch_count, value = @item.batch_count %>
+      <%= hidden_field_tag :item_id, value = @item.id %>
+      <%= form.submit %> <br/>
+    <% end %>
+
+    <% @item.bets.each do |bet| %>
+      <tr>
+        <td> <%= bet.serial_number %> </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
