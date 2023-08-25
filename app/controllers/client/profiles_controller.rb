@@ -2,6 +2,15 @@ class Client::ProfilesController < ApplicationController
   before_action :authenticate_client_user!
 
   def show
+    if params[:history] == 'order'
+      @orders = current_client_user.orders
+    elsif params[:history] == 'lottery'
+      @bets = current_client_user.bets
+    elsif params[:history] == 'winner'
+      @winners = current_client_user.winners
+    elsif params[:history] == 'invite'
+      @children = current_client_user.children
+    end
   end
 
   def edit
@@ -14,12 +23,11 @@ class Client::ProfilesController < ApplicationController
       flash[:notice] = 'Updated successfully'
       redirect_to client_profiles_path
     else
-      @client.update(update_with_password_params  )
+      @client.update(update_with_password_params)
       flash[:notice] = 'Updated successfully'
       redirect_to client_profiles_path
     end
   end
-
 
   private
 
