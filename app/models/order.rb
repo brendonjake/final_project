@@ -1,6 +1,14 @@
 class Order < ApplicationRecord
   include AASM
 
+  scope :filter_by_serial_number, -> (serial_number) { where serial_number: serial_number }
+  scope :filter_by_email, -> (email) { includes(:user).where(user: { email: email }) }
+  scope :filter_by_state, -> (genre) { where genre: genre }
+  scope :filter_by_state, -> (state) { where state: state }
+  scope :filter_by_state, -> (offer) { where offer: offer }
+  scope :filter_by_start_date, -> (start_date) { where("offline_at >= (?)", start_date) }
+  scope :filter_by_end_date, -> (end_date) { where("offline_at < (?)", end_date) }
+
   belongs_to :offer, optional: true
   belongs_to :user
 
@@ -53,15 +61,15 @@ class Order < ApplicationRecord
     end
   end
 
-  def update_coins_after_pay?
+  def update_coins_after_pay
     if !deduct?
-      user.update(coins: user.coin + coin)
+      user.update(coins: user.coins + coin)
     elsif deduct?
-      user.update(coins: user.coin - coin)
+      user.update(coins: user.coins - coin)
     end
   end
 
-  def increase_total_deposit_after_pay?
+  def increase_total_deposit_after_pay
     if deposit?
       user.update(total_deposit: user.total_deposit + amount)
     end

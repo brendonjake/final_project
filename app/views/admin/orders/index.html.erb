@@ -1,0 +1,39 @@
+<%= render partial: 'form', locals: { method: :post, path: admin_orders_path } %>
+
+
+<table class="table table-striped table-bordered ">
+  <thead>
+  <td>Genre</td>
+  <td>State</td>
+  <td>Amount</td>
+  <td>Coins</td>
+  </thead>
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.genre %></td>
+      <td><%= order.state %></td>
+      <td><%= order.amount %></td>
+      <td><%= order.coin %></td>
+      <td>
+        <%= button_to 'Pay', admin_order_pay_path(order), method: :put, class: 'btn btn-secondary' %>
+        <%= button_to 'Cancel', admin_order_cancel_path(order), method: :put, class: 'btn btn-secondary' %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Subtotal Coins</td>
+    <td></td>
+    <td></td>
+    <td><%= @subtotal_coins %></td>
+  </tr>
+  <tr>
+    <td>Total Coins</td>
+    <td></td>
+    <td></td>
+  <td><%= @total_coins %></td>
+</table>
+
+
+
+
+<%= paginate @orders %>
