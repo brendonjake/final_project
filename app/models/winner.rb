@@ -6,6 +6,8 @@ class Winner < ApplicationRecord
   belongs_to :user
   belongs_to :address, optional: true
 
+  mount_uploader :picture, ImageUploader
+
   include AASM
   scope :filter_by_serial_number, -> (serial_number) { where serial_number: serial_number }
   scope :filter_by_email, -> (email) { includes(:user).where(user: { email: email }) }
@@ -39,11 +41,11 @@ class Winner < ApplicationRecord
     end
 
     event :share do
-      transitions from: :delivered, to: :share
+      transitions from: :delivered, to: :shared
     end
 
     event :publish do
-      transitions from: :share, to: :published
+      transitions from: :shared, to: :published
     end
 
     event :remove_publish do
