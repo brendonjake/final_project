@@ -1,5 +1,5 @@
 class Client::LotteriesController < ApplicationController
-  before_action :authenticate_client_user!, except: :index
+  before_action :authenticate_client_user!, only: :create
   def index
     @items = Item.active.starting.where("offline_at >= (?) AND online_at <= (?)", Date.current, Date.current)
     @items = @items.includes(:categories).where(categories: { id: params[:category] }) if params[:category].present?
@@ -14,9 +14,10 @@ class Client::LotteriesController < ApplicationController
 
   def create
     bet_counts = params[:bet][:bet_count]
+
     bet_counts.to_i.times do
-      bet = Bet.create(batch_count: params[:item_batch_count],
-                       user_id: current_client_user.id, item_id: params[:item_id])
+      Bet.create(batch_count: params[:item_batch_count],
+                 user_id: current_client_user.id, item_id: params[:item_id])
     end
     flash[:notice] = 'Bet Successfully'
     redirect_to client_lottery_path(id: params[:item_id])

@@ -10,7 +10,7 @@ class Bet < ApplicationRecord
   has_many :winners
   belongs_to :item
   belongs_to :user
-  before_validation :deduct_user_coins
+  before_create :deduct_user_coins
   after_create :assign_serial_number
 
   aasm column: :state do
