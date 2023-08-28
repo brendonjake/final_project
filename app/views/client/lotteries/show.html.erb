@@ -11,13 +11,12 @@
     <div class="progress">
       <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-    <%= form_with model: @bet, url: client_lotteries_path, data: { turbo: false } do |form| %>
+    <%= form_with model: @bet, url: client_lotteries_path, method: :post, data: { turbo: false } do |form| %>
       <%= form.number_field :bet_count %>
       <%= hidden_field_tag :item_batch_count, value = @item.batch_count %>
       <%= hidden_field_tag :item_id, value = @item.id %>
       <%= form.submit %> <br/>
     <% end %>
-
     <% @item.bets.each do |bet| %>
       <tr>
         <td> <%= bet.serial_number %> </td>
@@ -25,4 +24,3 @@
     <% end %>
   </table>
 </div>
-

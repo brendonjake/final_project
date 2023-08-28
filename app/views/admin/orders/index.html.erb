@@ -15,8 +15,9 @@
       <td><%= order.amount %></td>
       <td><%= order.coin %></td>
       <td>
-        <%= button_to 'Pay', admin_order_pay_path(order), method: :put, class: 'btn btn-secondary' %>
-        <%= button_to 'Cancel', admin_order_cancel_path(order), method: :put, class: 'btn btn-secondary' %>
+        <%= button_to 'Submit', admin_order_submit_path(order), method: :put, class: 'btn btn-secondary'if order.may_submit? %>
+        <%= button_to 'Pay', admin_order_pay_path(order), method: :put, class: 'btn btn-secondary'if order.may_pay? %>
+        <%= button_to 'Cancel', admin_order_cancel_path(order), method: :put, class: 'btn btn-secondary'if order.may_cancel? %>
       </td>
     </tr>
   <% end %>

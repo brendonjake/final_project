@@ -1,4 +1,4 @@
-class Admin::OffersController < ApplicationController
+class Admin::OffersController < AdminController
 
   before_action :set_offer, only: [:edit, :update, :destroy]
 

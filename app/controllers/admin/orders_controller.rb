@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < AdminController
   def index
     @orders = Order.all
     filtering_params(params).each do |key, value|

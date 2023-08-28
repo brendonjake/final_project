@@ -1,4 +1,4 @@
-class Admin::BetsController < ApplicationController
+class Admin::BetsController < AdminController
 
   def index
     @bets = Bet.where(nil)

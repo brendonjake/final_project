@@ -25,7 +25,8 @@ class Item < ApplicationRecord
 
     event :start do
       transitions from: :paused, to: :starting
-      transitions from: [:pending, :ended, :cancelled], to: :starting, guard: [:quantity_enough?, :date_today?, :active?], after: :deduct_quantity
+      transitions from: :pending, to: :starting, guard: [:date_today?, :active?]
+      transitions from: [:ended, :cancelled], to: :starting, guard: [:quantity_enough?, :date_today?, :active?], after: :deduct_quantity
     end
 
     event :pause do

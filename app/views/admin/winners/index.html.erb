@@ -1,6 +1,5 @@
 <%= render partial: 'form', locals: { method: :post, path: admin_winners_path  } %>
 
-
 <table class="table table-striped table-bordered ">
   <thead>
   <td>Item Id</td>
@@ -27,13 +26,12 @@
       <td><%= winner.admin_id %></td>
       <td><%= winner.comment %></td>
       <td>
-        <%= link_to 'Comment', edit_admin_winner_path(winner), class: 'btn btn-secondary' %>
-        <%= button_to 'Submit', admin_winner_submit_path(winner), method: :put, class: 'btn btn-secondary' %>
-        <%= button_to 'Pay', admin_winner_pay_path(winner), method: :put, class: 'btn btn-secondary' %>
-        <%= button_to 'Ship', admin_winner_ship_path(winner), method: :put, class: 'btn btn-secondary' %>
-        <%= button_to 'Deliver', admin_winner_deliver_path(winner), method: :put, class: 'btn btn-secondary' %>
-        <%= button_to 'Publish', admin_winner_publish_path(winner), method: :put, class: 'btn btn-secondary' %>
-        <%= button_to 'Remove Publish', admin_winner_remove_publish_path(winner), method: :put, class: 'btn btn-secondary' %>
+        <%= button_to 'Submit', admin_winner_submit_path(winner), method: :put, class: 'btn btn-secondary'if winner.may_submit? %>
+        <%= button_to 'Pay', admin_winner_pay_path(winner), method: :put, class: 'btn btn-secondary'if winner.may_pay? %>
+        <%= button_to 'Ship', admin_winner_ship_path(winner), method: :put, class: 'btn btn-secondary'if winner.may_ship? %>
+        <%= button_to 'Deliver', admin_winner_deliver_path(winner), method: :put, class: 'btn btn-secondary'if winner.may_deliver? %>
+        <%= button_to 'Publish', admin_winner_publish_path(winner), method: :put, class: 'btn btn-secondary'if winner.may_publish? %>
+        <%= button_to 'Remove Publish', admin_winner_remove_publish_path(winner), method: :put, class: 'btn btn-secondary'if winner.may_remove_publish? %>
       </td>
     </tr>
   <% end %>

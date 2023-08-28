@@ -1,10 +1,13 @@
-class Admin::WinnersController < ApplicationController
+class Admin::WinnersController < AdminController
 
   def index
     @winners = Winner.all
     # filtering_params(params).each do |key, value|
     #   @winners = @winners.public_send("filter_by_#{key}", value) if value.present?
-    end
+  end
+
+  def show
+  end
 
   def submit
     @winner = Winner.find(params[:winner_id])
@@ -60,6 +63,10 @@ class Admin::WinnersController < ApplicationController
     redirect_to admin_winners_path
   end
 
+  def update
+
+
+  end
   # private
   #
   # def filtering_params(params)
