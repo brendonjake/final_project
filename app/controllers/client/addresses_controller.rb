@@ -17,9 +17,9 @@ class Client::AddressesController < ApplicationController
       flash.now[:alert] = 'Post create failed'
       render :new, status: :unprocessable_entity
     else
-      if @item.save
+      if @address.save
         flash[:notice] = 'Post created successfully'
-        redirect_to admin_addresses_path
+        redirect_to client_addresses_path
       else
         flash.now[:alert] = 'Post create failed'
         render :new, status: :unprocessable_entity

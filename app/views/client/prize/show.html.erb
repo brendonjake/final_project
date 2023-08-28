@@ -1,0 +1,17 @@
+<%= form_with(model: @winner, url: client_prize_path(@winner), method: :patch, data: { turbo: false }) do |form| %>
+<% if current_client_user.addresses.present? %>
+  <% current_client_user.addresses.each do |address| %>
+      <%= form.radio_button :address_id, address.id, checked: address.is_default %>
+      <%= "#{address.region&.name} #{address.province&.name} #{address.city&.name} #{address.barangay&.name} #{address&.street_address}" %>
+      <p>Genre: <%= address.genre%></p>
+      <p>Name: <%= address.name%></p>
+
+      <% if address.is_default %>
+        <h1>Default Address</h1>
+      <% end %>
+    <% end %>
+  <%else %>
+  <%= link_to "Create Address" , new_client_address_path , class: "btn btn-outline-secondary", style: "width: 300px"%>
+  <% end %>
+<%= form.submit "SUBMIT ", class: "btn btn-outline-secondary w-50 mt-2" %>
+<% end %>
