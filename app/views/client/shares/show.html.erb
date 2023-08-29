@@ -1,0 +1,5 @@
+<%= @share.id %>
+<%= image_tag @share.picture.url, class: "avatar-image", style: "width: 300px; height: 300px;" if @share.picture.present? %>
+<%= @share.user&.username %>
+<p class="card-text"><%= @share.comment %></p>
+<p class="card-text"><small class="text-body-secondary"><%= @share.updated_at %></small></p>

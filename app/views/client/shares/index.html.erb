@@ -1,0 +1,37 @@
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner mb-1">
+    <div class="carousel-item active d-flex justify-content-center">
+      <img src="<%= asset_path 'download bg.jpeg' %>" class="align-middle w-75" alt="..." style="height: 300px">
+    </div>
+    <div class="carousel-item d-flex justify-content-center">
+      <img src="<%= asset_path 'download bg.jpeg' %>" class="align-middle w-75" alt="..." style="height: 300px">
+    </div>
+    <div class="carousel-item d-flex justify-content-center">
+      <img src="<%= asset_path 'download bg.jpeg' %>" class="align-middle w-75" alt="..." style="height: 300px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="alert alert-dark ms-auto mx-auto align-items-center w-75" role="alert">
+  Announcement:
+</div>
+<div class="container w-100">
+  <button type="button" class="btn btn-secondary justify-content-center w-100">Button</button>
+</div>
+
+<% @shares.each do |share| %>
+  <%= link_to client_share_path(share) do %>
+    <%= image_tag share.picture.url, class: "avatar-image", style: "width: 170px; height: 170px;" if share.picture.present? %>
+    <%= share.user.username %>
+    <%= share.comment %>
+   <%= share.updated_at %>
+  <% end %>
+<% end %>
