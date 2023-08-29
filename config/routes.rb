@@ -6,12 +6,19 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'client/sessions', registrations: 'client/registrations'
     }, as: 'client'
+
     namespace :client, path: '' do
-      resource :profiles, only: [:show, :edit, :update]
+      resource :profiles, only: [:show, :edit, :update] do
+        put :cancel
+      end
       resources :addresses
       resources :invite_peoples
       resources :lotteries, only: [:index, :show, :create]
       resources :shops
+      resources :prize, only: [:show, :update]
+      resources :feedback, only: [:show, :update]
+      resources :shares, only:  [:index, :show]
+
     end
   end
 
@@ -41,9 +48,10 @@ Rails.application.routes.draw do
         put :remove_publish
       end
       resources :offers
-      resources :orders do
+      resources :orders, only: [:index] do
         put :pay
         put :cancel
+        put :submit
       end
 
       # namespace :admin do
