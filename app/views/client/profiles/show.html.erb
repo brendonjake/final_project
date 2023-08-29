@@ -48,6 +48,9 @@
         <td><%= order.state %></td>
         <td><%= order.amount %></td>
         <td><%= order.coin %></td>
+        <td>
+          <%= button_to "Cancel Order", cancel_client_profiles_path(id: order.id), method: :put, class: "btn btn-outline-secondary w-50", data: { turbo: false } if order.may_cancel? %>
+        </td>
       </tr>
     <% end %>
   </table>
@@ -89,6 +92,7 @@
     <td>Paid at</td>
     <td>Admin Id</td>
     <td>Comment</td>
+    <td>Action</td>
     </thead>
     <% @winners.each do |winner| %>
       <tr>
@@ -102,6 +106,10 @@
         <td><%= winner.paid_at %></td>
         <td><%= winner.admin_id %></td>
         <td><%= winner.comment %></td>
+        <td>
+          <%= link_to "Claim", client_prize_path(winner), class: "btn btn-success w-50 mt-2" if winner.may_claim? %>
+          <%= link_to "Share Feedback", client_feedback_path(winner), class: "btn btn-success w-50 mt-2" if winner.may_share? %>
+        </td>
       </tr>
     <% end %>
   </table>

@@ -29,6 +29,15 @@ class Client::ProfilesController < ApplicationController
     end
   end
 
+  def cancel
+    @order = Order.find(params[:id])
+    if @order.may_cancel?
+      flash[:notice] = 'Cancelled successfully'
+      @order.cancel!
+    end
+    redirect_to client_profiles_path
+  end
+
   private
 
   def update_without_password_params
