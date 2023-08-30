@@ -35,13 +35,13 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Username</a>
+            <h6>Username:</h6>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Email</a>
+            <h6>Email:</h6>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Coins</a>
+            <h6>Coins:</h6>
           </li>
           <a class="btn btn-primary" href="#" role="button">Cash In Now</a>
           <ul class="dropdown-menu dropdown-menu-dark">
@@ -105,7 +105,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ms-auto me-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Share</a>
+          <%= link_to 'Share', client_shares_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to 'Invite', client_invite_peoples_path, class: "nav-link" %>

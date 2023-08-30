@@ -2,16 +2,11 @@
   <div class="p-5 text-center bg-body-tertiary rounded-3 mb-3">
     <h1 class="text-body-emphasis mb-5">User Profile</h1>
     <ul class="list-unstyled mb-1-9">
-      <% if current_client_user %>
-        <%= current_client_user.username %>
-      <% else %>
-        ''
-      <% end %>
-      <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Username:</span>
+      <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Username: <%= current_client_user.username %></span>
       </li>
-      <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span>
+      <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email: <%= current_client_user.email %></span>
       </li>
-      <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Coins:</span>
+      <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Coins: <%= current_client_user.coins %></span>
       </li>
     </ul>
     <a class="btn btn-primary mb-3 rounded-pill" href="#" role="button" style="width: 300px">Cash In Now</a><br/>
