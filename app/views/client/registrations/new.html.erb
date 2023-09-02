@@ -1,32 +1,32 @@
 <main class="m-auto p-5 m-5 w-25">
   <div class="btn-group w-100">
-    <%= link_to 'Sign in', new_client_user_session_path, class:"btn btn-primary" %>
-    <%= link_to 'Register', new_client_user_registration_path, class:"btn btn-primary active" %>
+    <%= link_to 'Sign in', new_client_user_session_path, class: "btn btn-primary" %>
+    <%= link_to 'Register', new_client_user_registration_path, class: "btn btn-primary active" %>
   </div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <h1 class="h3 mb-3 fw-normal">Register</h1>
     <div class="form-floating mb-4">
-      <%= text_field_tag :promoter, cookies[:promoter], autofocus: true, autocomplete: "email", class:"form-control" %>
+      <%= text_field_tag :promoter, cookies[:promoter], autofocus: true, autocomplete: "email", class: "form-control" %>
       <%= label_tag :promoter %>
     </div>
 
     <div class="form-floating mb-4">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       <%= f.label :email %>
     </div>
 
     <div class="form-floating mb-4">
-      <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
       <%= f.label :password %>
     </div>
 
     <div class="form-floating mb-4">
-      <%= f.password_field :confirm_password, autocomplete: "current-password", class:"form-control" %>
+      <%= f.password_field :confirm_password, autocomplete: "current-password", class: "form-control" %>
       <%= f.label :confirm_password %>
     </div>
 
-    <%= f.submit "Register", class:"btn btn-primary w-100" %>
+    <%= f.submit "Register", class: "btn btn-primary w-100" %>
   <% end %>
 
 </main>

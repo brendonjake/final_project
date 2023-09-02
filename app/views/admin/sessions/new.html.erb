@@ -30,7 +30,7 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
 <main class="form-signin w-100 m-auto">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
     <h1 class="h3 mb-3 fw-normal text-center">Admin Login </h1><br/>
     <div class="form-floating">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>

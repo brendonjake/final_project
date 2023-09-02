@@ -16,7 +16,9 @@ class Admin::SessionsController < Devise::SessionsController
       flash[:alert] = "Wrong email or password"
       redirect_to new_admin_user_session_path
     end
+    # render json: params
   end
+
   # POST /resource/sign_in
   # def create
   #   super

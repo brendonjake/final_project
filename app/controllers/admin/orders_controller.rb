@@ -1,4 +1,5 @@
 class Admin::OrdersController < AdminController
+
   def index
     @orders = Order.all
     filtering_params(params).each do |key, value|
@@ -9,6 +10,14 @@ class Admin::OrdersController < AdminController
     @orders = @orders.page(params[:page]).per(5)
     @subtotal_coins = @orders.sum(&:coin)
     @subtotal_amount = @orders.sum(&:amount)
+  end
+
+  def create
+
+  end
+
+  def new
+
   end
 
   def pay
