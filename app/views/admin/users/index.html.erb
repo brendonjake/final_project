@@ -9,6 +9,7 @@
   <td>Total Used Coins</td>
   <td>Children Members</td>
   <td>Phone Number</td>
+  <td>Action</td>
   </thead>
   <% @users.each do |user| %>
     <tr>
@@ -20,6 +21,11 @@
       <td><%#= user.total_used_coins %></td>
       <td><%= user.children_member %></td>
       <td><%= user.phone %></td>
+      <td>
+        <%= link_to 'Increase', new_increase_path(user) %>
+        <%= link_to 'Deduct', new_deduct_path(user) %>
+        <%= link_to 'Bonus', new_bonuse_path(user) %>
+      </td>
     </tr>
   <% end %>
-    </table>
+</table>
