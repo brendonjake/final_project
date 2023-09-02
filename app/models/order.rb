@@ -1,6 +1,18 @@
 class Order < ApplicationRecord
   include AASM
 
+  with_options if: :deduct? do |admin|
+    admin.validates :remark, presence: true
+  end
+
+  with_options if: :increase? do |admin|
+    admin.validates :remark, presence: true
+  end
+
+  with_options if: :bonus? do |admin|
+    admin.validates :remark, presence: true
+  end
+
   scope :filter_by_serial_number, -> (serial_number) { where serial_number: serial_number }
   scope :filter_by_email, -> (email) { includes(:user).where(user: { email: email }) }
   scope :filter_by_state, -> (genre) { where genre: genre }
@@ -13,6 +25,7 @@ class Order < ApplicationRecord
   belongs_to :user
 
   after_create :assign_serial_number
+
   enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
 
   aasm column: :state do
@@ -20,11 +33,13 @@ class Order < ApplicationRecord
     state :submitted, :cancelled, :paid
 
     event :submit do
+      transitions from: :pending, to: :paid, unless: :deposit?
       transitions from: :pending, to: :submitted
     end
 
     event :pay do
       transitions from: :submitted, to: :paid, guard: :can_deduct_after_pay?, after: [:update_coins_after_pay, :increase_total_deposit_after_pay]
+      transitions from: :pending, to: :paid, after: :update_coins_after_pay, unless: :deposit?
     end
 
     event :cancel do

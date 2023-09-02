@@ -17,45 +17,49 @@ Rails.application.routes.draw do
       resources :shops
       resources :prize, only: [:show, :update]
       resources :feedback, only: [:show, :update]
-      resources :shares, only:  [:index, :show]
+      resources :shares, only: [:index, :show]
 
     end
   end
 
   constraints(AdminDomainConstraint.new) do
     root 'admin/home#index', as: 'admin_root'
-    devise_for :users, controllers: {
+    devise_for :users, skip: [:registrations], controllers: {
       sessions: 'admin/sessions'
     }, as: 'admin'
-    namespace :admin, path: '' do
-      resources :users, only: [:index]
-      resources :items do
-        put :start
-        put :pause
-        put :end
-        put :cancel
+    resources :users, path: 'users/clients', only: [:index], controller: 'admin/users' do
+      member do
+        scope path: :orders do
+          resources :increases, only: [:new, :create], controller: 'admin/increases'
+          resources :deducts, only: [:new, :create], controller: 'admin/deducts'
+          resources :bonuses, only: [:new, :create], controller: 'admin/bonuses'
+        end
       end
-      resources :categories
-      resources :bets do
-        put :cancel
-      end
-      resources :winners do
-        put :submit
-        put :pay
-        put :ship
-        put :deliver
-        put :publish
-        put :remove_publish
-      end
-      resources :offers
-      resources :orders, only: [:index] do
-        put :pay
-        put :cancel
-        put :submit
-      end
+    end
 
-      # namespace :admin do
-      # end
+    resources :items do
+      put :start
+      put :pause
+      put :end
+      put :cancel
+    end
+    resources :categories
+    resources :bets do
+      put :cancel
+    end
+    resources :winners do
+      put :submit
+      put :pay
+      put :ship
+      put :deliver
+      put :publish
+      put :remove_publish
+    end
+    resources :offers
+    resources :orders, only: [:index] do
+      put :pay
+      put :cancel
+      put :submit
     end
   end
 

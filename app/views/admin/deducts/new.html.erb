@@ -1,0 +1,11 @@
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%= button_to 'Increase', new_increase_path(@user), method: :get, class: 'btn btn-secondary' %>
+  <%= button_to 'Deduct', new_deduct_path(@user), method: :get, class: 'btn btn-secondary active' %>
+  <%= button_to 'Bonus', new_bonus_path(@user), method: :get, class: 'btn btn-secondary' %>
+</div>
+
+<%= render partial: 'form', locals: { method: :post, order: @order, path: deducts_path(@user) } %>
+
+<p> <%= @user.email %> </p>
+<p> <%= @user.parent&.email %> </p>
+<p> <%= @user.coins %> </p>
